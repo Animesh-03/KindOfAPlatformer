@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private GameObject levelManager;
-    public UIManager uiManager;
+    private UIManager uiManager;
     private int coins = 0;
     private Rigidbody2D rb;
 

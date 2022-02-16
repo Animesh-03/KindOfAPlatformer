@@ -23,8 +23,8 @@ public class PlayerMovement : MonoBehaviour
     private bool onGround;
     public LayerMask groundLayer;
     public Transform groundCheck;
-    public float groundCheckDistance;
-    private bool cancellingGrounded;
+    // public float groundCheckDistance;
+    // private bool cancellingGrounded;
 
     //Handles Input
     private void GetInput()
@@ -40,29 +40,55 @@ public class PlayerMovement : MonoBehaviour
         // Debug.Log("Cancelling grounded");
     }
 
+    // private void GroundCheck()
+    // {
+    //     RaycastHit2D hit = Physics2D.Raycast(groundCheck.position,-Vector2.up,groundCheckDistance,groundLayer);
+
+    //     if(hit)
+    //     {
+    //         if(true)
+    //         {
+    //             onGround = true;
+    //             cancellingGrounded = false;
+    //             CancelInvoke(nameof(CancelGrounded));
+    //             // Debug.Log("Ground found");
+    //         }
+
+    //         if(!cancellingGrounded)
+    //         {
+    //             cancellingGrounded = true;
+    //             Invoke(nameof(CancelGrounded),Time.smoothDeltaTime*5f);
+    //             // Debug.Log(0.01f/Time.deltaTime);
+    //         }
+    //         // Debug.Log("Hit " + hit.collider.name);
+    //     }
+    // }
+
     private void GroundCheck()
     {
-        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position,-Vector2.up,groundCheckDistance,groundLayer);
 
-        if(hit)
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        for(int i = 0; i < collision.contactCount; i++)
         {
-            if(true)
+            ContactPoint2D c = collision.GetContact(i);
+            if(collision.collider.gameObject.layer == 6 && c.normal == Vector2.up)  //Check if collision object is horizontal
             {
                 onGround = true;
-                cancellingGrounded = false;
-                CancelInvoke(nameof(CancelGrounded));
-                // Debug.Log("Ground found");
             }
-
-            if(!cancellingGrounded)
-            {
-                cancellingGrounded = true;
-                Invoke(nameof(CancelGrounded),Time.smoothDeltaTime*5f);
-                // Debug.Log(0.01f/Time.deltaTime);
-            }
-            // Debug.Log("Hit " + hit.collider.name);
         }
     }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.collider.gameObject.layer == 6)
+        {
+            onGround = false;
+        }
+    }
+
     
 
     private void Movement()
@@ -105,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         GetInput();
-        GroundCheck();
+        // GroundCheck();
         Movement();
     }
 }
