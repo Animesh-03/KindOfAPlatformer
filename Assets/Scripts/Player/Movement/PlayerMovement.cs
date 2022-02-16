@@ -60,15 +60,6 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(transform.right * moveSpeed * xInput * Time.smoothDeltaTime, ForceMode2D.Impulse);
         }
 
-        if(xInput > 0)
-        {
-            transform.localScale = new Vector3(1f,transform.localScale.y,transform.localScale.z);
-        }
-        else if(xInput < 0)
-        {
-            transform.localScale = new Vector3(-1f,transform.localScale.y,transform.localScale.z);
-        }
-
         if(yInput > 0 && onGround)
         {
             rb.velocity = new Vector3(rb.velocity.x,jumpForce,rb.velocity.y);
