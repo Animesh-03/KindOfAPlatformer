@@ -23,50 +23,12 @@ public class PlayerMovement : MonoBehaviour
     private bool onGround;
     public LayerMask groundLayer;
     public Transform groundCheck;
-    // public float groundCheckDistance;
-    // private bool cancellingGrounded;
 
     //Handles Input
     private void GetInput()
     {
         xInput = Input.GetAxisRaw("Horizontal");     // Value either 0 or +-1
         yInput = Input.GetAxisRaw("Vertical");
-    }
-
-    //Ground Check
-    void CancelGrounded()
-    {
-        onGround = false;
-        // Debug.Log("Cancelling grounded");
-    }
-
-    // private void GroundCheck()
-    // {
-    //     RaycastHit2D hit = Physics2D.Raycast(groundCheck.position,-Vector2.up,groundCheckDistance,groundLayer);
-
-    //     if(hit)
-    //     {
-    //         if(true)
-    //         {
-    //             onGround = true;
-    //             cancellingGrounded = false;
-    //             CancelInvoke(nameof(CancelGrounded));
-    //             // Debug.Log("Ground found");
-    //         }
-
-    //         if(!cancellingGrounded)
-    //         {
-    //             cancellingGrounded = true;
-    //             Invoke(nameof(CancelGrounded),Time.smoothDeltaTime*5f);
-    //             // Debug.Log(0.01f/Time.deltaTime);
-    //         }
-    //         // Debug.Log("Hit " + hit.collider.name);
-    //     }
-    // }
-
-    private void GroundCheck()
-    {
-
     }
 
     void OnCollisionStay2D(Collision2D collision)
