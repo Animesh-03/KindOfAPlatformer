@@ -9,6 +9,10 @@ public class Player : MonoBehaviour
     private int coins = 0;
     private Rigidbody2D rb;
 
+    public GhostRecorder ghostPlayerRecorder;
+    public GhostRecorder ghostHammerRecorder;
+    public bool diedInCheckpoint;
+
 
     void Start()
     {
@@ -26,11 +30,22 @@ public class Player : MonoBehaviour
     {
         transform.position = levelManager.GetComponent<LevelManager>().currentSpawn.position;
         rb.velocity = Vector2.zero;
+        diedInCheckpoint = true;
+        ResetGhost();
+        GhostPlayer.Instance.PlayGhost(true);
     }
 
     public void IncreaseCoins()
     {
         coins++;
         uiManager.ChangeCoinText(coins);
+    }
+
+    public void ResetGhost()
+    {
+        ghostPlayerRecorder.ReplaceWithNewGhost();
+        ghostHammerRecorder.ReplaceWithNewGhost();
+
+        GhostPlayer.Instance.StopGhost();
     }
 }

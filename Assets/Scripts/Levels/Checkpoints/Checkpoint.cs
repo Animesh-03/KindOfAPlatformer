@@ -24,6 +24,11 @@ public class Checkpoint : MonoBehaviour
             {
                 GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>().NextSpawn(spawnNumber);
                 GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().PlaySound("Checkpoint");
+
+                var playerScript = col.gameObject.transform.GetComponent<Player>();
+                playerScript.ResetGhost();
+                playerScript.diedInCheckpoint = false;
+
                 Debug.Log("Changed Spawn"); 
             }
         }

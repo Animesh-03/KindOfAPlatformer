@@ -22,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private bool onGround;
     public LayerMask groundLayer;
-    public Transform groundCheck;
 
     //Handles Input
     private void GetInput()
