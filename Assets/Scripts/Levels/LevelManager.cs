@@ -6,10 +6,10 @@ public class LevelManager : MonoBehaviour
 {   
     public Transform[] spawnAnchors;
     
-    [HideInInspector]
+    // [HideInInspector]
     public Transform currentSpawn;
     [HideInInspector]
-    public int spawnIndex;
+    public int spawnIndex = 0;
     
     void Start()
     {

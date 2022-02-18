@@ -17,6 +17,7 @@ public class GhostPlayer : MonoBehaviour
     {
         if(Instance == null) Instance = this;
         else Destroy(gameObject);
+        ToggleVisibility(false);
     }
 
     private void ToggleVisibility(bool visible)

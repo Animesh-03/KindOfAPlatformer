@@ -5,10 +5,19 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     public int spawnNumber;
+    public GameObject tutGhost;
+    private LevelManager levelManager;
 
     void Start()
     {
-        
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+
+        //Disable all the tutorial ghosts except the one associated with the initial checkpoint
+        if(levelManager.spawnIndex != spawnNumber && tutGhost != null)  
+        {
+            tutGhost.SetActive(false);
+            Debug.Log(transform.name);
+        }
     }
 
     void Update()
@@ -20,9 +29,17 @@ public class Checkpoint : MonoBehaviour
     {
         if(col.tag == "Player")
         {
-            if(GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>().spawnIndex < spawnNumber)  // If new checkpoint is after the older one then set new spawn
+            if(levelManager.spawnIndex < spawnNumber)  // If new checkpoint is after the older one then set new spawn
             {
-                GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>().NextSpawn(spawnNumber);
+                Destroy(levelManager.currentSpawn.GetComponent<Checkpoint>().tutGhost);
+                levelManager.NextSpawn(spawnNumber);
+
+                if(tutGhost != null)
+                {
+                    tutGhost.SetActive(true);
+                    Debug.Log(tutGhost.name);
+                }
+                                    
                 GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().PlaySound("Checkpoint");
 
                 var playerScript = col.gameObject.transform.GetComponent<Player>();

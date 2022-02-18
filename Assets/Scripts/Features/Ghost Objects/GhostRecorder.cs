@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
+using System.IO;
 using UnityEngine;
 
 public class GhostRecorder : MonoBehaviour
@@ -12,10 +14,15 @@ public class GhostRecorder : MonoBehaviour
     public List<float> timeValue;
     public List<Vector2> position;
     public List<float> rotation;
-
+    [HideInInspector]
     public List<float> newTimeValue;
+    [HideInInspector]
     public List<Vector2> newPosition;
+    [HideInInspector]
     public List<float> newRotation;
+
+    public TextAsset recordPosFile;
+    public TextAsset recordRotFile;
 
 
     void Start()
@@ -53,6 +60,20 @@ public class GhostRecorder : MonoBehaviour
         position = new List<Vector2>(newPosition);
         rotation = new List<float>(newRotation);
 
+        string posString = JsonUtility.ToJson(new SerializableList<Vector2>(position));
+        string rotString = JsonUtility.ToJson(new SerializableList<float>(rotation));
+        
+        File.WriteAllText("./Assets/Misc/" + transform.name +"Pos.txt",posString);
+        File.WriteAllText("./Assets/Misc/" + transform.name +"Rot.txt",rotString);
+
         ResetGhost();
     }
+}
+
+
+[Serializable]
+public class SerializableList<T>
+{
+    public List<T> list;
+    public SerializableList(List<T> list) => this.list = list;
 }

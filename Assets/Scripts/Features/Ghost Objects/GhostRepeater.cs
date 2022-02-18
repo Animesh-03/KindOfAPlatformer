@@ -9,6 +9,7 @@ public class GhostRepeater : MonoBehaviour
     public bool loop;
     private float timer;
     private Rigidbody2D rb;
+    public int startFrame = 0;
     public int index = 0;
 
     private Vector2 targetPos;
@@ -21,6 +22,7 @@ public class GhostRepeater : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         targetPos = ghost.position[0];
         targetRot = ghost.rotation[0];
+        index = startFrame;
     }
 
     void Update()
@@ -52,6 +54,6 @@ public class GhostRepeater : MonoBehaviour
 
     public void RestartGhost()
     {
-        index = 0;
+        index = startFrame;
     }
 }
