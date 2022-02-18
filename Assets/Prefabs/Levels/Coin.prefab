@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 300476567970346980}
   - component: {fileID: 300476567970346971}
   - component: {fileID: 300476567970346982}
+  - component: {fileID: 9166014839502504544}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -123,8 +124,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7797b164e89a5f84c81396f58c469d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magnitude: 0.5
+  magnitude: 1
   speed: 3
+--- !u!114 &9166014839502504544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300476567970346970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 1
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.32, y: -0.32, z: 0}
+  - {x: 0.32, y: -0.32, z: 0}
+  - {x: 0.32, y: 0.32, z: 0}
+  - {x: -0.32, y: 0.32, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -142920
 --- !u!1 &2053186943237535539
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,19 +199,19 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 1, g: 0.8949612, b: 0.3622641, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.6
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
-  m_ShadowIntensity: 0
+  m_ShadowIntensity: 0.239
   m_ShadowVolumeIntensity: 0
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.44
-  m_PointLightOuterRadius: 1.55
+  m_PointLightOuterRadius: 10
   m_PointLightDistance: 3
   m_PointLightQuality: 1
   m_ShapeLightParametricSides: 5
