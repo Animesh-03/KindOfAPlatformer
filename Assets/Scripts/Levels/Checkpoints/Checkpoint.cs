@@ -31,19 +31,19 @@ public class Checkpoint : MonoBehaviour
         {
             if(levelManager.spawnIndex < spawnNumber)  // If new checkpoint is after the older one then set new spawn
             {
-                Destroy(levelManager.currentSpawn.GetComponent<Checkpoint>().tutGhost);
+                Destroy(levelManager.currentSpawn.GetComponent<Checkpoint>().tutGhost); //Destroys the tut ghost object of previous checkpoint
                 levelManager.NextSpawn(spawnNumber);
 
-                if(tutGhost != null)
+                if(tutGhost != null)    //Enable the tut ghost of current checkpoint
                 {
                     tutGhost.SetActive(true);
                     Debug.Log(tutGhost.name);
                 }
                                     
-                GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().PlaySound("Checkpoint");
+                GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().PlaySound("Checkpoint");  //Play checkpoint sound
 
                 var playerScript = col.gameObject.transform.GetComponent<Player>();
-                playerScript.ResetGhost();
+                playerScript.ResetGhost();  //Reset the ghost of the player
                 playerScript.diedInCheckpoint = false;
 
                 Debug.Log("Changed Spawn"); 

@@ -20,6 +20,7 @@ public class GhostPlayer : MonoBehaviour
         ToggleVisibility(false);
     }
 
+    //Makes the player ghost visible or invisible
     private void ToggleVisibility(bool visible)
     {
         ghostSprite.enabled = visible;
@@ -27,20 +28,24 @@ public class GhostPlayer : MonoBehaviour
         ghostHammerHeadSprite.enabled = visible;
     }
 
+    //Plays the ghost which follows the previous actions
     public void PlayGhost(bool loop)
     {
+        //Enable movement of player and hammer
         ghostPlayerRepeater.repeat = true;
         ghostHammerRepeater.repeat = true;
 
         ghostPlayerRepeater.loop = loop;
         ghostHammerRepeater.loop = loop;
 
+        //Restarts the ghost to play from the beginning
         ghostPlayerRepeater.RestartGhost();
         ghostHammerRepeater.RestartGhost();
 
         ToggleVisibility(true);
     }
 
+    //Stops the ghost and sets it to invisbles
     public void StopGhost()
     {
         ghostPlayerRepeater.repeat = false;

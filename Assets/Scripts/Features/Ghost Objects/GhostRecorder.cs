@@ -11,11 +11,8 @@ public class GhostRecorder : MonoBehaviour
     public bool record;
     private float time;
     private float timer;
-    public List<float> timeValue;
     public List<Vector2> position;
     public List<float> rotation;
-    [HideInInspector]
-    public List<float> newTimeValue;
     [HideInInspector]
     public List<Vector2> newPosition;
     [HideInInspector]
@@ -35,10 +32,9 @@ public class GhostRecorder : MonoBehaviour
     {
         time += Time.unscaledDeltaTime;
         timer+= Time.unscaledDeltaTime;
-
+        //Add the player transform data to the list every timeStep seconds
         if(record && timer >= timeStep)
         {
-            newTimeValue.Add(time);
             newPosition.Add(transform.position);
             newRotation.Add(transform.eulerAngles.z);
 
@@ -49,22 +45,20 @@ public class GhostRecorder : MonoBehaviour
 
     public void ResetGhost()
     {
-        newTimeValue.Clear();
         newPosition.Clear();
         newRotation.Clear();
     }
 
     public void ReplaceWithNewGhost()
     {
-        timeValue = new List<float>(newTimeValue);
         position = new List<Vector2>(newPosition);
         rotation = new List<float>(newRotation);
-
+        //Convert lists to JSON
         string posString = JsonUtility.ToJson(new SerializableList<Vector2>(position));
         string rotString = JsonUtility.ToJson(new SerializableList<float>(rotation));
-        
-        File.WriteAllText("./Assets/Misc/" + transform.name +"Pos.txt",posString);
-        File.WriteAllText("./Assets/Misc/" + transform.name +"Rot.txt",rotString);
+        //Store the JSOn data in files
+        File.WriteAllText("./Assets/Misc/TutGhostJSON/" + transform.name +"Pos.txt",posString);
+        File.WriteAllText("./Assets/Misc/TutGhostJSON/" + transform.name +"Rot.txt",rotString);
 
         ResetGhost();
     }

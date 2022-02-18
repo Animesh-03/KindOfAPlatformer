@@ -30,7 +30,7 @@ public class GhostRepeater : MonoBehaviour
         if(repeat)
         {
             timer += Time.unscaledDeltaTime;
-
+            //Set the new target position and rotation every timeStep seconds
             if(timer >= ghost.timeStep)
             {
                 if(index <= ghost.position.Count)
@@ -46,7 +46,7 @@ public class GhostRepeater : MonoBehaviour
 
                 timer = 0;
             }
-
+            //Lerp the tansform values
             rb.MovePosition(Vector2.Lerp(currentPos,targetPos,timer/ghost.timeStep));
             rb.MoveRotation(Mathf.Lerp(currentRot,targetRot,timer/ghost.timeStep));
         }
