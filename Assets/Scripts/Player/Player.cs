@@ -33,8 +33,12 @@ public class Player : MonoBehaviour
         transform.position = levelManager.GetComponent<LevelManager>().currentSpawn.position;
         rb.velocity = Vector2.zero;
         diedInCheckpoint = true;
-        ResetGhost();
-        GhostPlayer.Instance.PlayGhost(true);
+        if(GhostPlayer.Instance != null)
+        {
+            ResetGhost();
+            GhostPlayer.Instance.PlayGhost(true);
+        }
+        
     }
 
     public void IncreaseCoins()

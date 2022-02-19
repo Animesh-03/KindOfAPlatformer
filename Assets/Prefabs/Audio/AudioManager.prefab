@@ -68,3 +68,10 @@ MonoBehaviour:
     volume: 1
     pitch: 0.6
     loop: 0
+  mainTheme:
+    source: {fileID: 0}
+    name: Prehistoric-Theme-4
+    clip: {fileID: 8300000, guid: 149fd7d14a9372e45bd098678f8d4597, type: 3}
+    volume: 0.692
+    pitch: 1
+    loop: 1
