@@ -151,7 +151,7 @@ MonoBehaviour:
   - {x: -0.32, y: 0.32, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -142920
+  m_InstanceId: 35932
 --- !u!1 &2053186943237535539
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 1, g: 0.8949612, b: 0.3622641, a: 1}
-  m_Intensity: 0.6
+  m_Intensity: 2
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}

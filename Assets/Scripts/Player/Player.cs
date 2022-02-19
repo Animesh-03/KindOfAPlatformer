@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        Application.targetFrameRate = 60;
+
         levelManager = GameObject.FindGameObjectWithTag("LevelManager");
         rb = GetComponent<Rigidbody2D>();
         uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
