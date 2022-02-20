@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         coinText = coinTextObj.GetComponent<TMPro.TextMeshProUGUI>(); 
+        Initialise();
     }
 
     // Update is called once per frame
@@ -25,5 +26,8 @@ public class UIManager : MonoBehaviour
         
     }
 
-    
+    void Initialise()
+    {
+        ChangeCoinText(PlayerDataManager.Instance.GetPlayerData().coins);
+    }
 }

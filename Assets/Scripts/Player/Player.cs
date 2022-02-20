@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
         levelManager = GameObject.FindGameObjectWithTag("LevelManager");
         rb = GetComponent<Rigidbody2D>();
         uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+
+        coins = PlayerDataManager.Instance.GetPlayerData().coins;
     }
 
     void Update()
@@ -47,6 +49,12 @@ public class Player : MonoBehaviour
         uiManager.ChangeCoinText(coins);
     }
 
+    public void SetCoins(int coins)
+    {
+        this.coins = coins;
+        uiManager.ChangeCoinText(coins);
+    }
+
     public void ResetGhost()
     {
         ghostPlayerRecorder.ReplaceWithNewGhost();
@@ -54,4 +62,15 @@ public class Player : MonoBehaviour
 
         GhostPlayer.Instance.StopGhost();
     }
+
+    public LevelManager getLevelManager()
+    {
+        return levelManager.GetComponent<LevelManager>();
+    }
+
+    public int GetCoins()
+    {
+        return coins;
+    }
+
 }

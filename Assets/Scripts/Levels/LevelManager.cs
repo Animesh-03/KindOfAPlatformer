@@ -23,8 +23,11 @@ public class LevelManager : MonoBehaviour
 
     void Initialise()
     {
-        spawnIndex = 0;
+        PlayerData playerData =  PlayerDataManager.Instance.GetPlayerData();
+        spawnIndex = playerData.checkpoint;
         currentSpawn = spawnAnchors[spawnIndex];
+
+        GameObject.FindObjectOfType<Player>().Respawn();
     }
 
     public void NextSpawn(int number)

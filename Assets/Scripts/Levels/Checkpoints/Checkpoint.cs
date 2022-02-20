@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Checkpoint : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class Checkpoint : MonoBehaviour
         if(levelManager.spawnIndex != spawnNumber && tutGhost != null)  
         {
             tutGhost.SetActive(false);
-            Debug.Log(transform.name);
         }
     }
 
@@ -43,6 +43,8 @@ public class Checkpoint : MonoBehaviour
                 var playerScript = col.gameObject.transform.GetComponent<Player>();
                 playerScript.ResetGhost();  //Reset the ghost of the player
                 playerScript.diedInCheckpoint = false;
+
+                PlayerDataManager.Instance.WritePlayerData(playerScript.GetCoins(),SceneManager.GetActiveScene().buildIndex, spawnNumber);
 
                 Debug.Log("Changed Spawn"); 
             }
