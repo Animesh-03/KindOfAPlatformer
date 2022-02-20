@@ -44,6 +44,7 @@ public class Checkpoint : MonoBehaviour
                 playerScript.ResetGhost();  //Reset the ghost of the player
                 playerScript.diedInCheckpoint = false;
 
+                //Rewrites player data each time a checkpoint is reached
                 PlayerDataManager.Instance.WritePlayerData(playerScript.GetCoins(),SceneManager.GetActiveScene().buildIndex, spawnNumber);
 
                 Debug.Log("Changed Spawn"); 

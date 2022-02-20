@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MainMenuTriggers : MonoBehaviour
@@ -9,6 +7,7 @@ public class MainMenuTriggers : MonoBehaviour
 
     public int levelIndex;
     
+    //Checks the type of trigger and calls the appropriate method
     void OnTriggerEnter2D(Collider2D col)
     {
         if(col.tag == "Player")

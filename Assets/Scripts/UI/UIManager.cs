@@ -25,7 +25,7 @@ public class UIManager : MonoBehaviour
     {
         
     }
-
+    //Gets the player data and sets the coin text
     void Initialise()
     {
         ChangeCoinText(PlayerDataManager.Instance.GetPlayerData().coins);

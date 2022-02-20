@@ -20,12 +20,19 @@ public class LevelManager : MonoBehaviour
     {
         
     }
-
+    //Gets the player data and sets the checkpoint
     void Initialise()
     {
         PlayerData playerData =  PlayerDataManager.Instance.GetPlayerData();
-        spawnIndex = playerData.checkpoint;
-        currentSpawn = spawnAnchors[spawnIndex];
+        if(playerData.checkpoint <= spawnAnchors.Length)
+        {
+            NextSpawn(playerData.checkpoint);
+        }
+        else
+        {
+            NextSpawn(0);
+        }
+        
 
         GameObject.FindObjectOfType<Player>().Respawn();
     }

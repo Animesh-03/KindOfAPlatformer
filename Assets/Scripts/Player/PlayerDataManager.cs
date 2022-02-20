@@ -13,17 +13,8 @@ public class PlayerDataManager : MonoBehaviour
         if(Instance == null)
             Instance = this;
     }
-    void Start()
-    {
-        
-    }
 
-    
-    void Update()
-    {
-        
-    }
-
+    //Writes the player in JSON from the playerData object
     public void WritePlayerData(int coins, int levelIndex, int checkpoint)
     {
         PlayerData playerData = new PlayerData();
@@ -37,10 +28,10 @@ public class PlayerDataManager : MonoBehaviour
         File.WriteAllText("./Assets/Misc/PlayerData/PlayerData.txt",json);
 
     }
-
+    //Return a player Data object from the JSON and refreshes the file each call
     public PlayerData GetPlayerData()
     {
-        AssetDatabase.Refresh();
+        AssetDatabase.ImportAsset("Assets/Misc/PlayerData/PlayerData.txt");
         return JsonUtility.FromJson<PlayerData>(playerData.text);
     }
 }

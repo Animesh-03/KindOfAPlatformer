@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
         levelManager = GameObject.FindGameObjectWithTag("LevelManager");
         rb = GetComponent<Rigidbody2D>();
         uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
-
+        //Sets coins from player Data
         coins = PlayerDataManager.Instance.GetPlayerData().coins;
     }
 
