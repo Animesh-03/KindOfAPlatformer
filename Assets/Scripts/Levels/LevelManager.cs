@@ -11,9 +11,14 @@ public class LevelManager : MonoBehaviour
     [HideInInspector]
     public int spawnIndex = 0;
     
-    void Start()
+    void Awake()
     {
         Initialise();
+    }
+
+    void Start()
+    {
+        PostInitialise();
     }
 
     void Update()
@@ -32,7 +37,10 @@ public class LevelManager : MonoBehaviour
         {
             NextSpawn(0);
         }
+    }
 
+    void PostInitialise()
+    {
         GameObject.FindObjectOfType<Player>().RespawnWithoutGhost();
     }
 

@@ -6,6 +6,7 @@ public class Checkpoint : MonoBehaviour
     public int spawnNumber;
     public GameObject tutGhost;
     private LevelManager levelManager;
+    public bool finalCheckpoint;
 
     void Start()
     {
@@ -27,27 +28,34 @@ public class Checkpoint : MonoBehaviour
     {
         if(col.tag == "Player")
         {
-            if(levelManager.spawnIndex < spawnNumber)  // If new checkpoint is after the older one then set new spawn
+            if(finalCheckpoint)
             {
-                Destroy(levelManager.currentSpawn.GetComponent<Checkpoint>().tutGhost); //Destroys the tut ghost object of previous checkpoint
-                levelManager.NextSpawn(spawnNumber);
-
-                if(tutGhost != null)    //Enable the tut ghost of current checkpoint
+                SceneLoader.Instance.NextLevel();
+            }
+            else
+            {
+                if(levelManager.spawnIndex < spawnNumber)  // If new checkpoint is after the older one then set new spawn
                 {
-                    tutGhost.SetActive(true);
-                    Debug.Log(tutGhost.name);
+                    Destroy(levelManager.currentSpawn.GetComponent<Checkpoint>().tutGhost); //Destroys the tut ghost object of previous checkpoint
+                    levelManager.NextSpawn(spawnNumber);
+
+                    if(tutGhost != null)    //Enable the tut ghost of current checkpoint
+                    {
+                        tutGhost.SetActive(true);
+                        Debug.Log(tutGhost.name);
+                    }
+                                        
+                    GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().PlaySound("Checkpoint");  //Play checkpoint sound
+
+                    var playerScript = col.gameObject.transform.GetComponent<Player>();
+                    playerScript.ResetGhost();  //Reset the ghost of the player
+                    playerScript.diedInCheckpoint = false;
+
+                    //Rewrites player data each time a checkpoint is reached
+                    PlayerDataManager.Instance.WritePlayerData(playerScript.GetCoins(),SceneManager.GetActiveScene().buildIndex, spawnNumber);
+
+                    Debug.Log("Changed Spawn"); 
                 }
-                                    
-                GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().PlaySound("Checkpoint");  //Play checkpoint sound
-
-                var playerScript = col.gameObject.transform.GetComponent<Player>();
-                playerScript.ResetGhost();  //Reset the ghost of the player
-                playerScript.diedInCheckpoint = false;
-
-                //Rewrites player data each time a checkpoint is reached
-                PlayerDataManager.Instance.WritePlayerData(playerScript.GetCoins(),SceneManager.GetActiveScene().buildIndex, spawnNumber);
-
-                Debug.Log("Changed Spawn"); 
             }
         }
     }

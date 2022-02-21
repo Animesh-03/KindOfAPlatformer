@@ -19,10 +19,12 @@ public class SceneLoader : MonoBehaviour
 
     }
 
-    //Loads the next level
-    void NextLevel()
+    //Loads the next level and writes the player data
+    public void NextLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1,LoadSceneMode.Single);
+        var playerData = PlayerDataManager.Instance.GetPlayerData();
+        PlayerDataManager.Instance.WritePlayerData(playerData.coins,SceneManager.GetActiveScene().buildIndex + 1,0);
     }
     //Loads the specified level
     public void LoadLevel(int index)
