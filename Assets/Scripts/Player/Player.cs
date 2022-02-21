@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
         uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
         //Sets coins from player Data
         coins = PlayerDataManager.Instance.GetPlayerData().coins;
+
     }
 
     void Update()

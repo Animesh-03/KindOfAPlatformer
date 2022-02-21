@@ -1,1 +1,0 @@
-{"coins":6,"levelIndex":1,"checkpoint":2}

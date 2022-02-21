@@ -1,6 +1,7 @@
 using System.IO;
 using UnityEngine;
 using UnityEditor;
+using System.Runtime.Serialization.Formatters.Binary;
 
 [System.Serializable]
 public class PlayerDataManager : MonoBehaviour
@@ -23,16 +24,44 @@ public class PlayerDataManager : MonoBehaviour
         playerData.coins = coins;
         playerData.levelIndex = levelIndex;
 
-        string json = JsonUtility.ToJson(playerData);
+        // string json = JsonUtility.ToJson(playerData);
 
-        File.WriteAllText("./Assets/Misc/PlayerData/PlayerData.txt",json);
+        // File.WriteAllText("./Assets/Misc/Resources/PlayerData/PlayerData.txt",json);
+
+        FileStream dataFile;
+        if(File.Exists(Application.persistentDataPath + "/PlayerData.txt"))
+        {
+            dataFile = File.OpenWrite(Application.persistentDataPath + "/PlayerData.txt");
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(dataFile,playerData);
+            dataFile.Close();
+        }
+        else
+        {
+            dataFile = File.Create(Application.persistentDataPath + "/PlayerData.txt");
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(dataFile,playerData);
+            dataFile.Close();
+        }
 
     }
     //Return a player Data object from the JSON and refreshes the file each call
     public PlayerData GetPlayerData()
     {
-        AssetDatabase.ImportAsset("Assets/Misc/PlayerData/PlayerData.txt");
-        return JsonUtility.FromJson<PlayerData>(playerData.text);
+        FileStream dataFile;
+
+        if(File.Exists(Application.persistentDataPath + "/PlayerData.txt"))
+        {
+            dataFile = File.OpenRead(Application.persistentDataPath + "/PlayerData.txt");
+            BinaryFormatter bf = new BinaryFormatter();
+            PlayerData playerData = bf.Deserialize(dataFile) as PlayerData;
+            return playerData;
+        }
+        else
+        {
+            return new PlayerData();
+        }
+    
     }
 }
 [System.Serializable]
@@ -41,4 +70,11 @@ public class PlayerData
     public int coins;
     public int levelIndex;
     public int checkpoint;
+
+    public PlayerData()
+    {
+        coins = 0;
+        levelIndex = 1;
+        checkpoint = 0;
+    }
 }

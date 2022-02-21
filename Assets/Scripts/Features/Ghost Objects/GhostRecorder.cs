@@ -56,11 +56,13 @@ public class GhostRecorder : MonoBehaviour
         //Convert lists to JSON
         string posString = JsonUtility.ToJson(new SerializableList<Vector2>(position));
         string rotString = JsonUtility.ToJson(new SerializableList<float>(rotation));
-        //Store the JSOn data in files
-        File.WriteAllText("./Assets/Misc/TutGhostJSON/" + transform.name +"Pos.txt",posString);
-        File.WriteAllText("./Assets/Misc/TutGhostJSON/" + transform.name +"Rot.txt",rotString);
 
         ResetGhost();
+        //Store the JSOn data in files
+        // File.WriteAllText("./Assets/Misc/TutGhostJSON/" + transform.name +"Pos.txt",posString);
+        // File.WriteAllText("./Assets/Misc/TutGhostJSON/" + transform.name +"Rot.txt",rotString);
+
+        
     }
 }
 

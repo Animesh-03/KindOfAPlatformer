@@ -16,8 +16,9 @@ public class LevelManager : MonoBehaviour
         Initialise();
     }
 
-    void Start()
+    IEnumerator Start()
     {
+        yield return StartCoroutine(WaitFor(0.1f));
         PostInitialise();
     }
 
@@ -42,6 +43,11 @@ public class LevelManager : MonoBehaviour
     void PostInitialise()
     {
         GameObject.FindObjectOfType<Player>().RespawnWithoutGhost();
+    }
+
+    IEnumerator WaitFor(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
     }
 
     public void NextSpawn(int number)

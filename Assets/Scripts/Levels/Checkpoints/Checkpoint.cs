@@ -44,7 +44,7 @@ public class Checkpoint : MonoBehaviour
             {
                 if(levelManager.spawnIndex < spawnNumber)  // If new checkpoint is after the older one then set new spawn
                 {
-                    Destroy(levelManager.currentSpawn.GetComponent<Checkpoint>().tutGhost); //Destroys the tut ghost object of previous checkpoint
+                    
                     levelManager.NextSpawn(spawnNumber);
 
                     if(tutGhost != null)    //Enable the tut ghost of current checkpoint
@@ -62,7 +62,8 @@ public class Checkpoint : MonoBehaviour
                     //Rewrites player data each time a checkpoint is reached
                     PlayerDataManager.Instance.WritePlayerData(playerScript.GetCoins(),SceneManager.GetActiveScene().buildIndex, spawnNumber);
 
-                    Debug.Log("Changed Spawn"); 
+                    Debug.Log("Changed Spawn");
+                    Destroy(levelManager.currentSpawn.GetComponent<Checkpoint>().tutGhost); //Destroys the tut ghost object of previous checkpoint 
                 }
             }
         }
