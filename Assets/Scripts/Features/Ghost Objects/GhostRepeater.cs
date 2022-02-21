@@ -20,8 +20,6 @@ public class GhostRepeater : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        targetPos = ghost.position[0];
-        targetRot = ghost.rotation[0];
         index = startFrame;
     }
 

@@ -43,6 +43,12 @@ public class Player : MonoBehaviour
         
     }
 
+    public void RespawnWithoutGhost()
+    {
+        transform.position = levelManager.GetComponent<LevelManager>().currentSpawn.position;
+        rb.velocity = Vector2.zero;        
+    }
+
     public void IncreaseCoins()
     {
         coins++;

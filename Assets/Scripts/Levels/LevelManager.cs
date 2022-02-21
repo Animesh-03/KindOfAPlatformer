@@ -32,9 +32,8 @@ public class LevelManager : MonoBehaviour
         {
             NextSpawn(0);
         }
-        
 
-        GameObject.FindObjectOfType<Player>().Respawn();
+        GameObject.FindObjectOfType<Player>().RespawnWithoutGhost();
     }
 
     public void NextSpawn(int number)
