@@ -30,7 +30,15 @@ public class Checkpoint : MonoBehaviour
         {
             if(finalCheckpoint)
             {
-                SceneLoader.Instance.NextLevel();
+                if(SceneManager.GetActiveScene().buildIndex - 1  == SceneManager.sceneCountInBuildSettings)
+                {
+                    SceneLoader.Instance.LoadLevel(0);
+                }
+                else
+                {
+                    SceneLoader.Instance.NextLevel();
+                }
+                
             }
             else
             {

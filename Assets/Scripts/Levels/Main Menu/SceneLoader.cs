@@ -1,6 +1,5 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using System.Collections;
 
 public class SceneLoader : MonoBehaviour
 {
@@ -19,6 +18,14 @@ public class SceneLoader : MonoBehaviour
 
     }
 
+    void Update()
+    {   
+        //Return to main menu
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0,LoadSceneMode.Single);
+        }
+    }
     //Loads the next level and writes the player data
     public void NextLevel()
     {
