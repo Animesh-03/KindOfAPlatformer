@@ -55,6 +55,7 @@ public class PlayerDataManager : MonoBehaviour
             dataFile = File.OpenRead(Application.persistentDataPath + "/PlayerData.txt");
             BinaryFormatter bf = new BinaryFormatter();
             PlayerData playerData = bf.Deserialize(dataFile) as PlayerData;
+            dataFile.Close();
             return playerData;
         }
         else
