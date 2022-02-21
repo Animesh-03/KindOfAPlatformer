@@ -11,15 +11,12 @@ public class LevelManager : MonoBehaviour
     [HideInInspector]
     public int spawnIndex = 0;
     
-    IEnumerator Awake()
-    {
-        yield return StartCoroutine(WaitFor(0.1f));
-        Initialise();
-    }
+    
 
     IEnumerator Start()
     {
         yield return StartCoroutine(WaitFor(0.1f));
+        Initialise();
         PostInitialise();
     }
 
